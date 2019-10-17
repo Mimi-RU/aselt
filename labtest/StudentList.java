@@ -47,13 +47,13 @@ public static void WriteData ( String[] args){
 
 
 //		Check arguments
-		if (args[0].equals("a")) {
+		if (args[0].equals(ShowAll)) {
 			String reader = LoadData();
 			String i[] = reader.split(",");
 			for (String j : i) {
 				System.out.println(j);
 			}
-			System.out.println("Data Loaded.");
+			System.out.println(finish);
 		}
 
 		else if(args[0].equals("r"))
@@ -103,7 +103,7 @@ public static void WriteData ( String[] args){
 			}
 			System.out.println(count +" word(s) found " + a.length);
 			} catch (Exception e){}
-			System.out.println("Data Loaded.");
+			System.out.println(finish);
 		}
 	}
 }
