@@ -3,74 +3,71 @@ import java.io.*;
 import java.text.*;
 import java.util.*;
 public class StudentList {
-	public static void main(String[] args) {
 
- if(args.length == 0){
- 	System.out.println("Usage : java StudentList a|r|c|?word|+word");
- 	return;
- }
-
-//		Check arguments
-		if(args[0].equals("a"))
-		{
-			System.out.println("Loading data ...");
-			try
-			{
+	public static String LoadData() {
+		System.out.println("Loading data ...");
+		String reader = null;
+		try {
 			BufferedReader stream = new BufferedReader(
 					new InputStreamReader(
 							new FileInputStream("students.txt")));
-			String reader = stream.readLine();
-			String i[] = reader.split(",");
-			for(String j : i)
-			{
-				System.out.println(j);
-			}
-			} catch (Exception e)
-			{
+			reader = stream.readLine();
+		} catch (Exception e) {
 
+		}
+		return reader;
+	}
+public static void WriteData ( String[] args){
+	System.out.println("Loading data ...");
+	try {
+		BufferedWriter s = new BufferedWriter(
+				new FileWriter("students.txt", true));
+		String t = args[0].substring(1);
+		Date d = new Date();
+		String df = "dd/mm/yyyy-hh:mm:ss a";
+		DateFormat dateFormat = new SimpleDateFormat(df);
+		String fd= dateFormat.format(d);
+		s.write(", "+t+"\nList last updated on "+fd);
+		s.close();
+	} catch (Exception e){
+
+	}
+	System.out.println("Data Loaded.");
+}
+	public static void main(String[] args) {
+
+		if (args.length == 0) {
+			System.out.println("Usage : java StudentList a|r|c|?word|+word");
+			return;
+		}
+
+
+//		Check arguments
+		if (args[0].equals("a")) {
+			String reader = LoadData();
+			String i[] = reader.split(",");
+			for (String j : i) {
+				System.out.println(j);
 			}
 			System.out.println("Data Loaded.");
 		}
+
 		else if(args[0].equals("r"))
 		{
-			System.out.println("Loading data ...");
-			try {
-			BufferedReader s = new BufferedReader(
-					new InputStreamReader(
-							new FileInputStream("students.txt")));
-			String r = s.readLine();
+			String r = LoadData();
 			System.out.println(r);
 			String i[] = r.split(",");
 			Random x = new Random();
 				int y = x.nextInt();
 					System.out.println(i[y]);
-			} catch (Exception e){}
 			System.out.println("Data Loaded.");
 		}
 		else if(args[0].contains("+")){
-			System.out.println("Loading data ...");
-			try {
-			BufferedWriter s = new BufferedWriter(
-					new FileWriter("students.txt", true));
-			String t = args[0].substring(1);
-	        Date d = new Date();
-	        String df = "dd/mm/yyyy-hh:mm:ss a";
-	        DateFormat dateFormat = new SimpleDateFormat(df);
-	        String fd= dateFormat.format(d);
-			s.write(", "+t+"\nList last updated on "+fd);
-			s.close();
-			} catch (Exception e){}
-
-			System.out.println("Data Loaded.");
+			WriteData(args);
 		}
 		else if(args[0].contains("?"))
 		{
-			System.out.println("Loading data ...");
-			try {
-			BufferedReader s = new BufferedReader(
-					new InputStreamReader(
-							new FileInputStream("students.txt")));
-			String r = s.readLine();
+			String r = LoadData();
 			String i[] = r.split(",");
 			boolean done = false;
 			String t = args[0].substring(1);
@@ -80,7 +77,6 @@ public class StudentList {
 						done=true;
 				}
 			}
-			} catch (Exception e){}
 			System.out.println("Data Loaded.");
 		}
 		else if(args[0].contains("c"))
