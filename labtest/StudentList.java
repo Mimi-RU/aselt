@@ -73,12 +73,11 @@ public static void WriteData ( String[] args){
 		{
 			String r = LoadData();
 			String i[] = r.split(",");
-			boolean done = false;
 			String t = args[0].substring(1);
-			for(int idx = 0; idx<i.length && !done; idx++) {
+			for(int idx = 0; idx<i.length; idx++) {
 				if(i[idx].equals(t)) {
 					System.out.println("We found it!");
-						done=true;
+					break;
 				}
 			}
 			System.out.println("Data Loaded.");
@@ -94,6 +93,7 @@ public static void WriteData ( String[] args){
 			char a[] = D.toCharArray();
 			boolean in_word = false;
 			int count=0;
+			// sir pore korbo
 			for(char c:a) {
 				if(c ==' ')
 				{
