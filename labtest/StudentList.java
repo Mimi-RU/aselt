@@ -16,11 +16,11 @@ public class StudentList {
 			System.out.println("Loading data ...");
 			try
 			{
-			BufferedReader s = new BufferedReader(
+			BufferedReader stream = new BufferedReader(
 					new InputStreamReader(
 							new FileInputStream("students.txt")));
-			String r = s.readLine();
-			String i[] = r.split(",");
+			String reader = stream.readLine();
+			String i[] = reader.split(",");
 			for(String j : i)
 			{
 				System.out.println(j);
