@@ -84,25 +84,11 @@ public static void WriteData ( String[] args){
 		}
 		else if(args[0].contains("c"))
 		{
-			System.out.println("Loading data ...");
-			try {
-			BufferedReader s = new BufferedReader(
-					new InputStreamReader(
-							new FileInputStream("students.txt")));
-			String D = s.readLine();
+			String D = LoadData();
 			char a[] = D.toCharArray();
-			boolean in_word = false;
-			int count=0;
-			// sir pore korbo
-			for(char c:a) {
-				if(c ==' ')
-				{
-					if (!in_word) {	count++; in_word =true;	}
-					else { in_word=false;}
-				}
-			}
-			System.out.println(count +" word(s) found " + a.length);
-			} catch (Exception e){}
+			String i[] = D.split(",");
+			int words = i.length;
+			System.out.println(words +" word(s) found " + a.length);
 			System.out.println(finish);
 		}
 	}
